@@ -7,6 +7,10 @@ const tileSize = {
   width: 101,
   height: 85,
 };
+const startPlayerPosition = {
+  x: tileSize.width * 2,
+  y: tileSize.height * 4 - charactersSize.charboy,
+};
 const gameBoard = {
   left: 0,
   top: 0,
@@ -59,8 +63,8 @@ class Player extends Character {
     if (this.y < tileSize.height - charactersSize.charboy) {
       setTimeout(() => {
         alert("You won");
-        this.y = tileSize.height * 4 - charactersSize.charboy;
-        this.x = tileSize.width * 2;
+        this.y = startPlayerPosition.y;
+        this.x = startPlayerPosition.x;
       }, 100);
     }
   }
@@ -92,10 +96,7 @@ const enemyLocationY = [
 const allEnemies = enemyLocationY.map((location) => {
   return new Enemy(100, location, (Math.random() + 1) * 100);
 });
-const player = new Player(
-  tileSize.width * 2,
-  tileSize.height * 4 - charactersSize.charboy
-);
+const player = new Player(startPlayerPosition.x, startPlayerPosition.y);
 
 document.addEventListener("keyup", function (e) {
   var allowedKeys = {
