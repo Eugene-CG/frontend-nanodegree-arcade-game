@@ -29,7 +29,7 @@ class Enemy extends Character {
     super(x, y, "images/enemy-bug.png");
     this.speed = speed;
   }
-  collision() {
+  checkCollision() {
     if (
       this.x +
         tileSize.width -
@@ -47,8 +47,8 @@ class Enemy extends Character {
   }
   update(dt) {
     this.x += this.speed * dt;
-    if (this.x > 500) this.x = -tileSize.width;
-    this.collision();
+    if (this.x > tileSize.width * 5) this.x = -tileSize.width;
+    this.checkCollision();
   }
 }
 class Player extends Character {
@@ -89,12 +89,9 @@ const enemyLocationY = [
   tileSize.height * 2 - charactersSize.bug,
   tileSize.height * 3 - charactersSize.bug,
 ];
-const allEnemies = [];
-
-enemyLocationY.forEach((location) =>
-  allEnemies.push(new Enemy(100, location, (Math.random() + 1) * 100))
-);
-
+const allEnemies = enemyLocationY.map((location) => {
+  return new Enemy(100, location, (Math.random() + 1) * 100);
+});
 const player = new Player(
   tileSize.width * 2,
   tileSize.height * 4 - charactersSize.charboy
