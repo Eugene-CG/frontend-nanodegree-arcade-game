@@ -1,4 +1,4 @@
-# Classic Arcade Game Clone Project
+# Classic Arcade Game Clone Project https://eugene-cg.github.io/frontend-nanodegree-arcade-game/
 
 ## Table of Contents
 
